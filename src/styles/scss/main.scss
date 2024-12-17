@@ -1,0 +1,12 @@
+// src/styles/scss/main.scss
+
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'base/reset';
+@import 'base/fonts';
+// Importar componentes individuales
+@import 'components/home';
+
+body {
+    font-family: 'Flexo', sans-serif;
+}
