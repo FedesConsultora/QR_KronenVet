@@ -1,105 +1,72 @@
-@font-face {
+@font-face {    
     font-family: 'Flexo';
-    src: url('/fonts/Flexo-Thin.woff') format('woff');
+    src: url('/public/font/Flexo-Thin.woff') format('woff');
     font-weight: 100;
     font-style: normal;
+    font-display: swap;
   }
+  
   
   @font-face {
     font-family: 'Flexo';
-    src: url('/fonts/Flexo-Thinlt.woff') format('woff');
-    font-weight: 100;
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'Flexo';
-    src: url('/fonts/Flexo-Light.woff') format('woff');
+    src: url('/public/font/Flexo-Light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
   }
   
-  @font-face {
-    font-family: 'Flexo';
-    src: url('/fonts/Flexo-Lightlt.woff') format('woff');
-    font-weight: 300;
-    font-style: italic;
-  }
+
   
   @font-face {
     font-family: 'Flexo';
-    src: url('/fonts/Flexo-Regular.woff') format('woff');
+    src: url('/public/font/Flexo-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
   }
   
   @font-face {
     font-family: 'Flexo';
-    src: url('/fonts/Flexo-It.woff') format('woff');
+    src: url('/public/font/Flexo-It.woff') format('woff');
     font-weight: 400;
     font-style: italic;
+    font-display: swap;
   }
   
   @font-face {
     font-family: 'Flexo';
-    src: url('/fonts/Flexo-Medium.woff') format('woff');
+    src: url('/public/font/Flexo-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
   }
+
   
   @font-face {
     font-family: 'Flexo';
-    src: url('/fonts/Flexo-Mediumlt.woff') format('woff');
-    font-weight: 500;
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'Flexo';
-    src: url('/fonts/Flexo-Demi.woff') format('woff');
+    src: url('/public/font/Flexo-Demi.woff') format('woff');
     font-weight: 600;
     font-style: normal;
+    font-display: swap;
   }
+
   
   @font-face {
     font-family: 'Flexo';
-    src: url('/fonts/Flexo-Demilt.woff') format('woff');
-    font-weight: 600;
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'Flexo';
-    src: url('/fonts/Flexo-Boldlt.woff') format('woff');
-    font-weight: 700;
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'Flexo';
-    src: url('/fonts/Flexo-Heavy.woff') format('woff');
+    src: url('/public/font/Flexo-Heavy.woff') format('woff');
     font-weight: 800;
     font-style: normal;
+    font-display: swap;
   }
+  
+
   
   @font-face {
     font-family: 'Flexo';
-    src: url('/fonts/Flexo-Heavylt.woff') format('woff');
-    font-weight: 800;
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'Flexo';
-    src: url('/fonts/Flexo-Black.woff') format('woff');
+    src: url('/public/font/Flexo-Black.woff') format('woff');
     font-weight: 900;
     font-style: normal;
+    font-display: swap;
   }
   
-  @font-face {
-    font-family: 'Flexo';
-    src: url('/fonts/Flexo-Blacklt.woff') format('woff');
-    font-weight: 900;
-    font-style: italic;
-  }
+
   

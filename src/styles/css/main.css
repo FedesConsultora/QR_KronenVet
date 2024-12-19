@@ -1,0 +1,427 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Flexo", sans-serif;
+  background-color: #ededed;
+}
+
+@font-face {
+  font-family: "Flexo";
+  src: url("/public/font/Flexo-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Flexo";
+  src: url("/public/font/Flexo-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Flexo";
+  src: url("/public/font/Flexo-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Flexo";
+  src: url("/public/font/Flexo-It.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Flexo";
+  src: url("/public/font/Flexo-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Flexo";
+  src: url("/public/font/Flexo-Demi.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Flexo";
+  src: url("/public/font/Flexo-Heavy.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Flexo";
+  src: url("/public/font/Flexo-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: url("/public/assets/images/fondoRojo.png");
+  background-size: cover;
+  border-radius: 15px;
+  width: 80%;
+  height: 80%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close-btn {
+  background: #ededed;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #504B4B;
+  transition: background-color 0.3s ease;
+}
+.modal-close-btn:hover {
+  background-color: #cccccc;
+}
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-image: url("/public/assets/images/fondoRojo.png");
+  margin: 1.5rem 1rem;
+  background-size: cover;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  min-height: calc(100vh - 1.5rem);
+}
+.landing-container .flecha {
+  position: absolute;
+  top: -1.3rem;
+}
+.landing-container .ofertas {
+  position: absolute;
+  top: 35%;
+  z-index: 1;
+  opacity: 0.5;
+  width: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+.landing-container .navContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.landing-container .navContainer .border {
+  width: 80%;
+  height: 2px;
+  border-radius: 10px;
+  background-color: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.landing-container .navContainer .logo {
+  width: 160px;
+  height: auto;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+.landing-container .navContainer .botonOfertas {
+  width: 295px;
+  background-image: url("/public/assets/icons/botonOfertas.png");
+  background-size: cover;
+  background-position-x: 6px;
+  height: 131px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  z-index: 3;
+  cursor: pointer;
+}
+.landing-container .navContainer .botonOfertas:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+.landing-container .navContainer .botonOfertas p {
+  font-size: 2rem;
+  position: relative;
+  left: 2rem;
+  bottom: 0.5rem;
+  font-weight: bolder;
+  color: #504B4B;
+  font-style: italic;
+}
+.landing-container .navContainer .botonLegajo {
+  width: 232px;
+  background-image: url("/public/assets/icons/botonLegajo.png");
+  background-size: cover;
+  background-position-x: 6px;
+  height: 107px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  cursor: pointer;
+}
+.landing-container .navContainer .botonLegajo:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+.landing-container .navContainer .botonLegajo p {
+  font-size: 1.3rem;
+  position: relative;
+  bottom: 0.5rem;
+  font-weight: bolder;
+  color: #504B4B;
+  font-style: italic;
+}
+.landing-container .navContainer .botonCapacitaciones {
+  width: 232px;
+  background-image: url("/public/assets/icons/botonCapacitaciones.png");
+  background-size: cover;
+  background-position-x: 6px;
+  height: 107px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  cursor: pointer;
+}
+.landing-container .navContainer .botonCapacitaciones:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+.landing-container .navContainer .botonCapacitaciones p {
+  font-size: 1.3rem;
+  position: relative;
+  bottom: 0.5rem;
+  font-weight: bolder;
+  color: #504B4B;
+  font-style: italic;
+}
+.landing-container .socialMedia {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.landing-container .socialMedia .navSocial {
+  display: flex;
+  justify-content: center;
+}
+.landing-container .socialMedia .navSocial li {
+  list-style: none;
+  margin-left: 0.7rem;
+  margin-right: 0.7rem;
+  cursor: pointer;
+}
+.landing-container .socialMedia .navSocial li:hover {
+  transform: scale(1.08);
+  -webkit-transform: scale(1.08);
+  -moz-transform: scale(1.08);
+  -ms-transform: scale(1.08);
+  -o-transform: scale(1.08);
+}
+.landing-container .socialMedia .navSocial li img {
+  width: 25px;
+}
+
+@media (min-width: 500px) {
+  .landing-container .ofertas {
+    position: absolute;
+    top: 25%;
+    z-index: 1;
+    opacity: 0.5;
+    width: 80%;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+@media (min-width: 700px) {
+  .landing-container .ofertas {
+    display: none;
+  }
+}
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+.navContainer .btnBack {
+  margin-left: 2rem;
+  background-color: #ededed;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+.navContainer .btnBack img {
+  width: 100%;
+}
+.navContainer .carousel {
+  margin-top: 2rem;
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  /* .swiper-wrapper y .swiper-slide son clases internas de Swiper */
+}
+.navContainer .carousel .swiper {
+  height: fit-content;
+}
+.navContainer .carousel .swiper-wrapper {
+  display: flex;
+  margin-bottom: 2.5rem;
+}
+.navContainer .carousel .swiper-slide.carousel-item {
+  /* Aqui estilo los slides, que ahora tienen ambas clases (.swiper-slide y .carousel-item) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navContainer .carousel .swiper-slide.carousel-item:hover {
+  transform: scale(1.01);
+  -webkit-transform: scale(1.01);
+  -moz-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  -o-transform: scale(1.01);
+}
+.navContainer .carousel .swiper-slide.carousel-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+.navContainer .carousel .swiper-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 3;
+}
+.navContainer .carousel .swiper-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #504B4B;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.navContainer .carousel .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #504B4B;
+}
+.navContainer .border {
+  width: 80%;
+  height: 2px;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 1rem !important;
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.navContainer .btnBack {
+  background-color: #ededed;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: 3rem;
+}
+.navContainer .btnBack img {
+  width: 100%;
+}
+.navContainer .capacitaciones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 80%;
+}
+.navContainer .capacitaciones-list .capacitacion-btn {
+  background-color: #504B4B;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  font-style: italic;
+  transition: background-color 0.3s ease;
+}
+.navContainer .capacitaciones-list .capacitacion-btn:hover {
+  background-color: rgb(179.5241935484, 17.4758064516, 21.4475806452);
+}
+.navContainer .border {
+  width: 80%;
+  height: 2px;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 2rem;
+}
+
+/*# sourceMappingURL=main.css.map */

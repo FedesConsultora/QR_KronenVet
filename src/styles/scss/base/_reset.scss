@@ -1,5 +1,5 @@
 // src/styles/scss/base/_reset.scss
-
+@use '../abstracts/variables' as vars;
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@
   }
   
   body {
-    font-family: $font-stack; // usado del archivo _variables.scss
-    background-color: #fff;
+    font-family: vars.$font-stack; 
+    background-color: vars.$background-grey;
   }
   

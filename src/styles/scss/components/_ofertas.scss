@@ -1,0 +1,89 @@
+@use '../abstracts/variables' as vars;
+
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+
+  .btnBack {
+    margin-left: 2rem;
+    background-color: vars.$background-grey;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    img {
+      width: 100%;
+    }
+  }
+
+  .carousel {
+    margin-top: 2rem;
+    width: 80%;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    .swiper{
+        height: fit-content;
+    }
+    /* .swiper-wrapper y .swiper-slide son clases internas de Swiper */
+    .swiper-wrapper {
+      display: flex;
+      margin-bottom: 2.5rem;
+    }
+
+    .swiper-slide.carousel-item {
+      /* Aqui estilo los slides, que ahora tienen ambas clases (.swiper-slide y .carousel-item) */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover{
+        transform: scale(1.01);
+        -webkit-transform: scale(1.01);
+        -moz-transform: scale(1.01);
+        -ms-transform: scale(1.01);
+        -o-transform: scale(1.01);
+}
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        display: block;
+      }
+    }
+
+    .swiper-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+        z-index: 3;
+      .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background-color: vars.$secondary-color;
+        border-radius: 50%;
+        cursor: pointer;
+
+      }
+
+      .swiper-pagination-bullet-active {
+        background-color: vars.$secondary-color;
+      }
+    }
+  }
+
+  .border {
+    width: 80%;
+    height: 2px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 1rem !important;
+  }
+}
