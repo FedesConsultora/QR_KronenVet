@@ -117,13 +117,13 @@
         -o-transform: scale(1.1);
       }
       p{
-        font-size: 2rem;
+        font-size: 1.7rem;
         position: relative;
         left: 2rem;
         bottom: 0.5rem;
         font-weight: bolder;
         color: vars.$secondary-color;
-        font-style: italic;
+        font-style: normal;
       }
     }
    
@@ -147,12 +147,12 @@
           -o-transform: scale(1.1);
         }
         p{
-          font-size: 1.3rem;
+          font-size: 1.1rem;
           position: relative;
           bottom: 0.5rem;
           font-weight: bolder;
           color: vars.$secondary-color;
-          font-style: italic;
+          font-style: normal;
           
         }
       
@@ -178,12 +178,12 @@
         -o-transform: scale(1.1);
       }
       p{
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         position: relative;
         bottom: 0.5rem;
         font-weight: bolder;
         color: vars.$secondary-color;
-        font-style: italic;
+        font-style: normal;
         
       }
     }

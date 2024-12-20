@@ -188,13 +188,13 @@ body {
   -o-transform: scale(1.1);
 }
 .landing-container .navContainer .botonOfertas p {
-  font-size: 2rem;
+  font-size: 1.7rem;
   position: relative;
   left: 2rem;
   bottom: 0.5rem;
   font-weight: bolder;
   color: #504B4B;
-  font-style: italic;
+  font-style: normal;
 }
 .landing-container .navContainer .botonLegajo {
   width: 232px;
@@ -217,12 +217,12 @@ body {
   -o-transform: scale(1.1);
 }
 .landing-container .navContainer .botonLegajo p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   position: relative;
   bottom: 0.5rem;
   font-weight: bolder;
   color: #504B4B;
-  font-style: italic;
+  font-style: normal;
 }
 .landing-container .navContainer .botonCapacitaciones {
   width: 232px;
@@ -245,12 +245,12 @@ body {
   -o-transform: scale(1.1);
 }
 .landing-container .navContainer .botonCapacitaciones p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   position: relative;
   bottom: 0.5rem;
   font-weight: bolder;
   color: #504B4B;
-  font-style: italic;
+  font-style: normal;
 }
 .landing-container .socialMedia {
   margin-top: 1rem;
