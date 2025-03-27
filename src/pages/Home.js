@@ -3,7 +3,7 @@ import Logo from '../components/Logo.js';
 import { useNavigate } from 'react-router-dom';
 import ReactModal from 'react-modal';
 
-ReactModal.setAppElement('#root'); // Asegúrate que en public/index.html tengas <div id="root"></div>
+ReactModal.setAppElement('#root'); // Asegúrate de que en public/index.html tengas <div id="root"></div>
 
 const Home = () => {
   const navigate = useNavigate();

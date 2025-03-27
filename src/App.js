@@ -8,6 +8,7 @@ import {
 import Home from './pages/Home.js';
 import Ofertas from './pages/Ofertas.js';
 import Capacitaciones from './pages/Capacitaciones.js';
+import Ruleta from './pages/Ruleta.js';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/ofertas" element={<Ofertas />} />
           <Route path="/capacitaciones" element={<Capacitaciones />} />
+          <Route path="/ruleta" element={<Ruleta />} />
         </Routes>
       </Router>
     </div>
