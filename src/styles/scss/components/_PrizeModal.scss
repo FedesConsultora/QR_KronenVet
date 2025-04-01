@@ -1,0 +1,67 @@
+.modal-overlay {
+    /* Fondo semitransparente que cubre toda la pantalla */
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+  }
+  
+  .modal-content {
+    /* Fondo con imagen, similar a tu snippet */
+    background: url('/public/assets/images/fondoRojo.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px; /* limita el ancho en pantallas grandes */
+    height: auto; /* en lugar de forzar 80% de alto */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #fff; /* Texto blanco sobre rojo */
+  
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  
+    button {
+      /* Estilo del botón Cerrar */
+      background: #fff;
+      border: none;
+      border-radius: 10px;
+      width: 120px;
+      height: 40px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #333;
+      margin: 0 auto; /* Centra horizontalmente */
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+  
+    /* Si quisieras un botón circular en la esquina, haz algo como:
+    .modal-close-btn {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      ...
+    }
+    */
+  }
+  

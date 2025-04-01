@@ -8,7 +8,9 @@
 @use 'components/home';
 @use 'components/ofertas';
 @use 'components/capacitaciones';
-
+@use 'components/ruleta';
+@use 'components/UserForm';
+@use 'components/PrizeModal';
 
 .ruleta-development-message {
     margin-top: 3rem;

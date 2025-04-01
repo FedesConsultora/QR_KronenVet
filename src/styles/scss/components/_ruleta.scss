@@ -1,0 +1,71 @@
+.ruleta-container {
+  position: relative;
+  margin: 0 auto;
+  
+  // Aro exterior blanco
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 330px;  // Ajusta según necesites
+    height: 330px; // Ajusta según necesites
+    transform: translate(-50%, -50%);
+    border: 7px solid #ffffff; // Borde blanco
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  // Círculo central blanco con sombra
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;  // Ajusta el tamaño
+    height: 80px; // Ajusta el tamaño
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 50%;
+    z-index: 5;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  }
+
+  // Si tienes un logo encima del círculo central
+  .ruleta-center-logo {
+    position: absolute;
+    top: 49.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; // Ajusta el tamaño
+    height: auto;
+    z-index: 6;
+    pointer-events: none;
+  }
+
+  // El canvas de la ruleta
+  canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background-size: cover;
+    padding: 1.5rem;
+  }
+
+
+
+  // Imagen del puntero
+  .ruleta-marker {
+    position: absolute;
+    top: -78px; // Ajusta para que quede arriba del canvas
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
+    width: 180px; // Ajusta el tamaño que quieras
+    height: auto;
+  }
+}

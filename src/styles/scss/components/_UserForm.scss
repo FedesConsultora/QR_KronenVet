@@ -1,0 +1,59 @@
+.user-form {
+    /* Inspirado en tu snippet con fondo rojo y bordes redondeados */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #534D4B 0%, #4A4746 50%, #4F4A47 100%);
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    padding: 1.5rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #fff; /* Texto blanco sobre fondo rojo */
+    margin-bottom: 1rem;
+    h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+  
+    div {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+  
+      label {
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+      }
+  
+      input {
+        border: none;
+        border-radius: 8px;
+        padding: 0.6rem;
+        font-size: 1rem;
+        outline: none;
+        /* Si quieres fondo semitransparente */
+        background: rgba(255, 255, 255, 1);
+        color: #333;
+      }
+    }
+  
+    button[type="submit"] {
+      background-color: #ffffff;
+      color: #000;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+  }
+  

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -95,6 +96,18 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.modal-content.email {
+  background: url("/public/assets/images/fondoRojo.png");
+  background-size: cover;
+  border-radius: 15px;
+  width: 80%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 .modal-close-btn {
   background: #ededed;
   border: none;
@@ -114,6 +127,26 @@ body {
   transition: background-color 0.3s ease;
 }
 .modal-close-btn:hover {
+  background-color: #cccccc;
+}
+
+.modal-close-btn.email {
+  background: #ededed;
+  border: none;
+  width: 70px;
+  height: 40px;
+  cursor: pointer;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #504B4B;
+  transition: background-color 0.3s ease;
+}
+.modal-close-btn.email:hover {
   background-color: #cccccc;
 }
 
@@ -144,6 +177,11 @@ body {
   width: 100%;
   user-select: none;
   pointer-events: none;
+}
+.landing-container .logoBlanco {
+  width: 200px;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
 }
 .landing-container .navContainer {
   position: relative;
@@ -422,6 +460,185 @@ body {
   border-radius: 10px;
   background-color: white;
   margin-top: 2rem;
+}
+
+.ruleta-container {
+  position: relative;
+  margin: 0 auto;
+}
+.ruleta-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 330px;
+  height: 330px;
+  transform: translate(-50%, -50%);
+  border: 7px solid #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+}
+.ruleta-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 5;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.ruleta-container .ruleta-center-logo {
+  position: absolute;
+  top: 49.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: auto;
+  z-index: 6;
+  pointer-events: none;
+}
+.ruleta-container canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  padding: 1.5rem;
+}
+.ruleta-container .ruleta-marker {
+  position: absolute;
+  top: -78px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  width: 180px;
+  height: auto;
+}
+
+.user-form {
+  /* Inspirado en tu snippet con fondo rojo y bordes redondeados */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #534D4B 0%, #4A4746 50%, #4F4A47 100%);
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: #fff; /* Texto blanco sobre fondo rojo */
+  margin-bottom: 1rem;
+}
+.user-form h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.user-form div {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.user-form div label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+.user-form div input {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  outline: none;
+  /* Si quieres fondo semitransparente */
+  background: rgb(255, 255, 255);
+  color: #333;
+}
+.user-form button[type=submit] {
+  background-color: #ffffff;
+  color: #000;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.user-form button[type=submit]:hover {
+  background-color: #ccc;
+}
+
+.modal-overlay {
+  /* Fondo semitransparente que cubre toda la pantalla */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  /* Fondo con imagen, similar a tu snippet */
+  background: url("/public/assets/images/fondoRojo.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 600px; /* limita el ancho en pantallas grandes */
+  height: auto; /* en lugar de forzar 80% de alto */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: #fff; /* Texto blanco sobre rojo */
+  /* Si quisieras un botón circular en la esquina, haz algo como:
+  .modal-close-btn {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    ...
+  }
+  */
+}
+.modal-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.modal-content p {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.modal-content button {
+  /* Estilo del botón Cerrar */
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  margin: 0 auto; /* Centra horizontalmente */
+  transition: background-color 0.3s ease;
+}
+.modal-content button:hover {
+  background-color: #ccc;
 }
 
 .ruleta-development-message {
