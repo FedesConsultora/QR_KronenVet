@@ -1,30 +1,39 @@
-import React, { createContext, useState, useRef } from 'react';
+import React, { createContext, useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import ReactHowler from 'react-howler';
 
 export const SoundContext = createContext();
 
 export function SoundProvider({ children }) {
-  // Sonido de fondo (wheelLoop.mp3): se reproduce desde el inicio con volumen 0.6
+  const location = useLocation();
+  const isRuletaPath = location.pathname.startsWith('/ruleta');
+
   const [backgroundVolume, setBackgroundVolume] = useState(0.6);
-  const [backgroundPlaying, setBackgroundPlaying] = useState(true);
+  const [backgroundPlaying, setBackgroundPlaying] = useState(isRuletaPath);
 
-  // Sonido de spin en loop (spinStart.mp3): se reproducirá cuando se inicie el spin
   const [spinLoopPlaying, setSpinLoopPlaying] = useState(false);
-
-  // Sonido de botón (buttonSound.mp3)
   const [buttonSoundPlaying, setButtonSoundPlaying] = useState(false);
 
-  // Refs para acceder a métodos Howler
   const backgroundRef = useRef(null);
   const spinLoopRef = useRef(null);
   const buttonRef = useRef(null);
 
-  // Función para ajustar el volumen del sonido de fondo
+  // 🔄 Si cambia la ruta, activar/desactivar sonido de fondo según corresponda
+  useEffect(() => {
+    if (isRuletaPath) {
+      setBackgroundPlaying(true);
+    } else {
+      if (backgroundRef.current && backgroundRef.current.howl) {
+        backgroundRef.current.howl.fade(backgroundRef.current.howl.volume(), 0, 300);
+      }
+      setTimeout(() => setBackgroundPlaying(false), 300);
+    }
+  }, [location]);
+
   const adjustBackgroundVolume = (newVolume) => {
     setBackgroundVolume(newVolume);
   };
 
-  // Detener el sonido de fondo con fade out (por ejemplo, al mostrar el modal del ganador)
   const stopBackgroundSound = () => {
     if (backgroundRef.current && backgroundRef.current.howl) {
       backgroundRef.current.howl.fade(backgroundRef.current.howl.volume(), 0, 300);
@@ -32,18 +41,13 @@ export function SoundProvider({ children }) {
     setTimeout(() => setBackgroundPlaying(false), 300);
   };
 
-  // Alias: usamos stopBackgroundSound para detener el loop de fondo
-  const stopLoopSound = stopBackgroundSound;
-
-  // Activar el sonido de fondo
   const playLoopSound = () => setBackgroundPlaying(true);
 
-  // Funciones para el sonido del spin en loop  
-  // ¡Importante!: siempre renderizaremos el componente ReactHowler para spin, controlando la reproducción con la prop "playing"
   const playSpinLoopSound = () => {
     console.log("playSpinLoopSound called");
     setSpinLoopPlaying(true);
   };
+
   const stopSpinLoopSound = () => {
     if (spinLoopRef.current && spinLoopRef.current.howl) {
       spinLoopRef.current.howl.fade(spinLoopRef.current.howl.volume(), 0, 300);
@@ -51,7 +55,6 @@ export function SoundProvider({ children }) {
     setTimeout(() => setSpinLoopPlaying(false), 300);
   };
 
-  // Funciones para el sonido de botón
   const playButtonSound = () => setButtonSoundPlaying(true);
   const stopButtonSound = () => setButtonSoundPlaying(false);
 
@@ -61,7 +64,6 @@ export function SoundProvider({ children }) {
     adjustBackgroundVolume,
     stopBackgroundSound,
     playLoopSound,
-    stopLoopSound,
     spinLoopPlaying,
     playSpinLoopSound,
     stopSpinLoopSound,
@@ -75,8 +77,8 @@ export function SoundProvider({ children }) {
 
   return (
     <SoundContext.Provider value={value}>
-      {/* Sonido de fondo: wheelLoop.mp3 */}
-      {backgroundPlaying && (
+      {/* ✅ Sonido de fondo solo si está activado y en /ruleta */}
+      {backgroundPlaying && isRuletaPath && (
         <ReactHowler
           src="/assets/sounds/wheelLoop.mp3"
           playing={true}
@@ -85,7 +87,8 @@ export function SoundProvider({ children }) {
           ref={backgroundRef}
         />
       )}
-      {/* Sonido del spin en loop: spinStart.mp3 siempre montado, pero controlado por spinLoopPlaying */}
+
+      {/* Spin loop controlado */}
       <ReactHowler
         src="/assets/sounds/spinStart.mp3"
         playing={spinLoopPlaying}
@@ -93,7 +96,8 @@ export function SoundProvider({ children }) {
         loop={true}
         ref={spinLoopRef}
       />
-      {/* Sonido de botón: buttonSound.mp3 */}
+
+      {/* Sonido de botón */}
       {buttonSoundPlaying && (
         <ReactHowler
           src="/assets/sounds/buttonSound.mp3"
@@ -104,6 +108,7 @@ export function SoundProvider({ children }) {
           onEnd={stopButtonSound}
         />
       )}
+
       {children}
     </SoundContext.Provider>
   );
