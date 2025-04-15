@@ -3,32 +3,29 @@ import Logo from '../components/Logo.js';
 import { useNavigate } from 'react-router-dom';
 import ReactModal from 'react-modal';
 
-ReactModal.setAppElement('#root'); // Asegúrate de que en public/index.html tengas <div id="root"></div>
+ReactModal.setAppElement('#root');
 
 const Home = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOfertas = () => {
-    navigate('/ofertas');
-  };
+  const handleOfertas = () => navigate('/ofertas');
+  const handleCapacitaciones = () => navigate('/capacitaciones');
+  const handleLegajo = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleCapacitaciones = () => {
-    navigate('/capacitaciones');
-  };
+  // Simplemente cambia esto a true o false para mostrar/ocultar las ofertas temporales
+  const [showEphemeralOffers] = useState(true); // ponlo en false para ocultar el botón
 
-  const handleLegajo = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleOfertasTemporales = () => {
+    navigate('/ofertas-temporales');
   };
 
   return (
     <main className="landing-container">
       <img className="flecha" src="/assets/images/flecha.png" alt="Flecha" />
       <img className="ofertas" src="/assets/images/ofertasFondo.png" alt="Ofertas fondo" />
+
       <section className="navContainer">
         <Logo />
         <div className="botonOfertas" onClick={handleOfertas}>
@@ -43,6 +40,7 @@ const Home = () => {
         </div>
         <div className="border"></div>
       </section>
+
       <section className="socialMedia">
         <ul className="navSocial">
           <a href="https://www.instagram.com/kronenvet/" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoInstagram.png" alt="Instagram kronen"/></li></a>
@@ -69,6 +67,14 @@ const Home = () => {
           style={{ width: '100%', height: '100%', border: 'none', flex: 1 }}
         />
       </ReactModal>
+
+      {showEphemeralOffers && (
+        <div className="float-button-container">
+          <button className="btn-float" onClick={handleOfertasTemporales}>
+            Ofertas Temporales
+          </button>
+        </div>
+      )}
     </main>
   );
 };

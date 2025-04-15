@@ -34,7 +34,7 @@ const slides = [
   { link: 'https://www.kronenvet.com.ar/?Find=feligen', img: '/assets/images/ofertas/OM ABRIL26.jpg', alt: 'Oferta 26' },
   { link: 'https://www.kronenvet.com.ar/?Find=sulfadim', img: '/assets/images/ofertas/OM ABRIL27.jpg', alt: 'Oferta 27' },
   { link: 'https://www.kronenvet.com.ar/?Find=tea', img: '/assets/images/ofertas/OM ABRIL28.jpg', alt: 'Oferta 28' },
- 
+  
 ];
 
 const Ofertas = () => {
