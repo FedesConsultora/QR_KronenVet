@@ -1,51 +1,109 @@
-// src/UserForm.jsx
 import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../contextos/UserContext.js';
-import { saveUserData, bringEmails } from '../services/api.js';
+import { saveUserData, bringEmails, getUserByEmail } from '../services/api.js';
 import { SoundContext } from '../contextos/SoundContext.js';
-import DuplicateEmailModal from './DuplicateEmailModal.js'; // Importa el modal
+import DuplicateEmailModal from './DuplicateEmailModal.js';
+import { useSearchParams } from 'react-router-dom';
 
 function UserForm() {
-  const { setUserData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
   const { playButtonSound } = useContext(SoundContext);
+
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
-  const [telefono, setTelefono] = useState('');
+  const [veterinaria, setVeterinaria] = useState('');
   const [existingEmails, setExistingEmails] = useState([]);
   const [showDuplicateModal, setShowDuplicateModal] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const [searchParams] = useSearchParams();
+  const emailFromURL = searchParams.get('email') || '';
 
   useEffect(() => {
-    bringEmails()
-      .then(data => {
-        if (data.status === "success") {
-          setExistingEmails(data.emails);
-        } else {
-          console.error("Error:", data.message);
+    const fetchData = async () => {
+      try {
+        const emailsData = await bringEmails();
+        if (emailsData.status === "success") {
+          setExistingEmails(emailsData.emails);
         }
-      })
-      .catch(err => console.error("Error trayendo emails:", err));
+  
+        if (emailFromURL) {
+          const res = await getUserByEmail(emailFromURL);
+          if (res.status === "success") {
+            const u = res.user;
+            setUserData({
+              email: u.email,
+              nombre: u.nombre || '',
+              apellido: u.apellido || '',
+              veterinaria: u.veterinaria || '',
+              premio: null,
+              yaGiro: u.yaGiro || false
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Error en carga inicial:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
   }, []);
+
+  // Mientras carga: mostramos spinner
+  if (loading) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: '80px', color: '#ffffff' }}>
+        <div className="spinner" />
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
+  // Si ya tenemos un user cargado (vía email URL), no mostramos el form
+  if (userData?.email && emailFromURL && userData.email === emailFromURL) {
+    return null;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     playButtonSound();
-
+  
     const emailLower = email.toLowerCase();
-    const emailExists = existingEmails.some(existingEmail => existingEmail.toLowerCase() === emailLower);
-
-    if (emailExists) {
-      setShowDuplicateModal(true);
+    const matchedUser = existingEmails.find(user =>
+      (typeof user === 'string' ? user : user.email).toLowerCase() === emailLower
+    );
+  
+    if (matchedUser) {
+      // Si ya giró, mostramos el modal y no dejamos avanzar
+      if (matchedUser.yaGiro) {
+        setShowDuplicateModal(true);
+        return;
+      }
+  
+      // Si NO giró, permitimos jugar pero no guardamos otra vez
+      const userToSet = {
+        nombre: matchedUser.nombre || nombre,
+        apellido: matchedUser.apellido || apellido,
+        veterinaria: matchedUser.veterinaria || veterinaria,
+        email: matchedUser.email || email,
+        yaGiro: false
+      };
+  
+      setUserData(userToSet);
       return;
     }
-
-    const data = { nombre, apellido, email, telefono, premio: null };
-    setUserData(data);
-
-    saveUserData(data)
+  
+    // Nuevo usuario → se guarda normalmente
+    const newUser = { nombre, apellido, email, veterinaria, premio: null };
+    setUserData(newUser);
+  
+    saveUserData(newUser)
       .then(() => {
         console.log("Datos del usuario guardados");
-        setExistingEmails(prev => [...prev, emailLower]);
+        setExistingEmails(prev => [...prev, { ...newUser, yaGiro: false }]);
       })
       .catch(err => console.error("Error guardando datos del usuario:", err));
   };
@@ -53,10 +111,11 @@ function UserForm() {
   return (
     <>
       <form onSubmit={handleSubmit} className="user-form">
-        <h2>Registra tus datos para jugar</h2>
+        <h2>Registra tus datos</h2>
+        <h2>para jugar</h2>
         <div>
           <label>Nombre:</label>
-          <input 
+          <input
             type="text"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
@@ -65,7 +124,7 @@ function UserForm() {
         </div>
         <div>
           <label>Apellido:</label>
-          <input 
+          <input
             type="text"
             value={apellido}
             onChange={(e) => setApellido(e.target.value)}
@@ -74,7 +133,7 @@ function UserForm() {
         </div>
         <div>
           <label>Email:</label>
-          <input 
+          <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -82,11 +141,11 @@ function UserForm() {
           />
         </div>
         <div>
-          <label>Teléfono:</label>
-          <input 
-            type="tel"
-            value={telefono}
-            onChange={(e) => setTelefono(e.target.value)}
+          <label>Veterinaria:</label>
+          <input
+            type="text"
+            value={veterinaria}
+            onChange={(e) => setVeterinaria(e.target.value)}
             required
           />
         </div>

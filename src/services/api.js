@@ -1,49 +1,81 @@
-  // src/services/api.js
-  export const saveUTMs = (utms) => {
-    const endpoint = "https://script.google.com/macros/s/AKfycbxaXg84Y9KrFcZx9Qh5s7Wk1GsPyMkIqBIAXxE1l65mpSW_2ere1Acyno-klG9uPvYR/exec";
-    // En el payload incluimos "tipo" para que coincida con el Google Script
-    const payload = { ...utms, tipo: "utm" };
-  
-    return fetch(endpoint, {
-      method: "POST",
-      mode: "no-cors", // Trabajamos en no-cors según lo solicitado
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-  };
-  
-  export const saveUserData = (userData) => {
-    const endpoint = "https://script.google.com/macros/s/AKfycbxaXg84Y9KrFcZx9Qh5s7Wk1GsPyMkIqBIAXxE1l65mpSW_2ere1Acyno-klG9uPvYR/exec";
-    // Agrega "tipo": "usuario" para que el Google Script sepa que es un registro de usuario.
-    const payload = { ...userData, tipo: "usuario" };
-  
-    return fetch(endpoint, {
-      method: "POST",
-      mode: "no-cors", // se usa no-cors según lo solicitado
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-  };
+// src/services/api.js
+const endpoint = "https://script.google.com/macros/s/AKfycbwMlPjpiyPIhbURx0ftviW51mbuG9Ac9QGQtkJrA82oE28jeVDQjAGxg02P9Qd533Po/exec";
 
-  export const saveWinner = (winnerData) => {
-    const endpoint = "https://script.google.com/macros/s/AKfycbxaXg84Y9KrFcZx9Qh5s7Wk1GsPyMkIqBIAXxE1l65mpSW_2ere1Acyno-klG9uPvYR/exec";
-    // Incluye "tipo": "ganadores" para que el Script sepa que son datos de ganador
-    console.log('Se envía: ', winnerData);
-    const payload = { ...winnerData, tipo: "ganadores" };
-  
-    return fetch(endpoint, {
-      method: "POST",
-      mode: "no-cors", // según lo solicitado
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-  };
+export const saveUTMs = (utms) => {
+  const payload = { ...utms, tipo: "utm" };
 
-  export const bringEmails = () => {
-    const endpoint = "https://script.google.com/macros/s/AKfycbxaXg84Y9KrFcZx9Qh5s7Wk1GsPyMkIqBIAXxE1l65mpSW_2ere1Acyno-klG9uPvYR/exec?action=bringEmails";
-  
-    return fetch(endpoint, {
-      method: "GET",
-    })
-      .then(res => res.json());
-  };
+  return fetch(endpoint, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+};
+
+export const saveUserData = (userData) => {
+  const payload = { ...userData, tipo: "usuario" };
+
+  return fetch(endpoint, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+};
+
+export const saveWinner = (winnerData) => {
+  const payload = { ...winnerData, tipo: "ganadores" };
+
+  return fetch(endpoint, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+};
+
+export const suscribirNotificacion = ({ email, nombre = '' }) => {
+  return fetch(endpoint, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tipo: 'notify', email, nombre })
+  });
+};
+
+export const bringEmails = () => {
+  return fetch(`${endpoint}?action=bringEmails`, {
+    method: "GET",
+  })
+  .then(res => res.json());
+};
+
+export const bringPrizes = () => {
+  return fetch(`${endpoint}?action=getPrizes`, {
+    method: "GET",
+  })
+  .then(res => res.json());
+};
+
+export const trackClickDescuento = (email) => {
+  const encodedEmail = encodeURIComponent(email);
+
+  return fetch(`${endpoint}?action=trackClick&email=${encodedEmail}`, {
+    method: "GET",
+    mode: "no-cors" 
+  });
+};
+
+export const marcarYaGiro = (email) => {
+  return fetch(endpoint, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tipo: 'yaGiro', email })
+  });
+};
+
+export const getUserByEmail = (email) => {
+  return fetch(`${endpoint}?action=getUserByEmail&email=${encodeURIComponent(email)}`)
+    .then(res => res.json());
+};

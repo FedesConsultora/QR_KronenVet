@@ -34,7 +34,12 @@ const slides = [
   { link: 'https://www.kronenvet.com.ar/?Find=feligen', img: '/assets/images/ofertas/OM ABRIL26.jpg', alt: 'Oferta 26' },
   { link: 'https://www.kronenvet.com.ar/?Find=sulfadim', img: '/assets/images/ofertas/OM ABRIL27.jpg', alt: 'Oferta 27' },
   { link: 'https://www.kronenvet.com.ar/?Find=tea', img: '/assets/images/ofertas/OM ABRIL28.jpg', alt: 'Oferta 28' },
-  
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05101' ,img: '/assets/images/ofertas/OM ABRIL34.jpg', alt: 'Oferta 34' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05101' ,img: '/assets/images/ofertas/OM ABRIL35.jpg', alt: 'Oferta 35' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05129' ,img: '/assets/images/ofertas/OM ABRIL36.jpg', alt: 'Oferta 36' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05129' ,img: '/assets/images/ofertas/OM ABRIL37.jpg', alt: 'Oferta 37' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05833' ,img: '/assets/images/ofertas/OM ABRIL38.jpg', alt: 'Oferta 38' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05833' ,img: '/assets/images/ofertas/OM ABRIL39.jpg', alt: 'Oferta 39' },
 ];
 
 const Ofertas = () => {

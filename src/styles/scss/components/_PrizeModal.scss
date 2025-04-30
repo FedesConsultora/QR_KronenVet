@@ -11,7 +11,7 @@
   
   .modal-content {
     /* Fondo con imagen, similar a tu snippet */
-    background: url('/public/assets/images/fondoRojo.png');
+    background-image: url('https://fedesagency.com/Kronen/fondoBlancoConRuleta.png');
     background-size: cover;
     background-position: center;
     border-radius: 15px;
@@ -26,34 +26,50 @@
     color: #fff; /* Texto blanco sobre rojo */
   
     h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      background: linear-gradient(
+        to right,
+        #A21B1D 0%,
+        #A51A1C 15%,
+        #AF191C 27%,
+        #C1181C 39%,
+        #DA161C 51%,
+        #E1161C 53%
+      );
+      margin-top: 0 !important;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      font-weight: bold;
       text-align: center;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2.5rem;
+      font-size: 1.4rem;
     }
     
     p {
       font-size: 1.2rem;
       text-align: center;
       margin-bottom: 2rem;
+      color: #333;
     }
   
-    button {
-      /* Estilo del botón Cerrar */
-      background: #fff;
-      border: none;
-      border-radius: 10px;
-      width: 120px;
-      height: 40px;
-      cursor: pointer;
+    .btn-descuento {
+      background: linear-gradient(180deg, #ffffff 0%,#fff 100%);
+      color: #e2161b;
       font-weight: bold;
-      font-size: 1rem;
-      color: #333;
-      margin: 0 auto; /* Centra horizontalmente */
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: #ccc;
-      }
+      border-radius: 10px;
+      padding: 12px 20px;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background 0.3s ease;
+      margin: 0 auto;
+    }
+    
+    .btn-descuento:hover {
+      background: #ffe4e4;
     }
   
     /* Si quisieras un botón circular en la esquina, haz algo como:

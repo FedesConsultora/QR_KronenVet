@@ -497,6 +497,10 @@ body {
   margin-top: 2rem;
 }
 
+.landing-container.ruleta {
+  background-image: url("https://fedesagency.com/Kronen/fondoRojoTextura.png");
+}
+
 .ruleta-container {
   position: relative;
   margin: 0 auto;
@@ -562,21 +566,27 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #534D4B 0%, #4A4746 50%, #4F4A47 100%);
+  background-image: url("https://fedesagency.com/Kronen/fondoBlancoConRuleta.png");
   background-size: cover;
   background-position: center;
   border-radius: 15px;
   padding: 1.5rem;
   max-width: 500px;
   width: 90%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #fff;
   margin-bottom: 1rem;
 }
 .user-form h2 {
-  margin-bottom: 1rem;
+  background: linear-gradient(to right, #A21B1D 0%, #A51A1C 15%, #AF191C 27%, #C1181C 39%, #DA161C 51%, #E1161C 53%);
+  margin-top: 0 !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
   text-align: center;
-  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
 }
 .user-form div {
   margin-bottom: 1rem;
@@ -586,31 +596,60 @@ body {
 .user-form div label {
   font-weight: bold;
   margin-bottom: 0.3rem;
+  color: #575756;
 }
 .user-form div input {
   border: none;
-  border-radius: 8px;
-  padding: 0.6rem;
+  border-radius: 18px;
+  padding: 0.5rem;
   font-size: 1rem;
   outline: none;
-  /* Si quieres fondo semitransparente */
-  background: rgb(255, 255, 255);
+  /*Siquieresfondosemitransparente*/
+  background: #C6C6C6;
   color: #333;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
 }
 .user-form button[type=submit] {
-  background-color: #ffffff;
-  color: #000;
+  background: linear-gradient(to right, #A21B1D 0%, #A51A1C 15%, #AF191C 27%, #C1181C 39%, #DA161C 51%, #E1161C 53%);
+  color: white;
   border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 8px;
+  padding: 12px 34px;
+  border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
 }
 .user-form button[type=submit]:hover {
-  background-color: #ccc;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(226, 22, 28, 0.4);
 }
 
+.spinner {
+  margin: 0 auto;
+  width: 70px;
+  height: 70px;
+  border: 8px solid #ffffff;
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  animation: girar 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .modal-overlay {
   /* Fondo semitransparente que cubre toda la pantalla */
   position: fixed;
@@ -627,7 +666,7 @@ body {
 
 .modal-content {
   /* Fondo con imagen, similar a tu snippet */
-  background: url("/public/assets/images/fondoRojo.png");
+  background-image: url("https://fedesagency.com/Kronen/fondoBlancoConRuleta.png");
   background-size: cover;
   background-position: center;
   border-radius: 15px;
@@ -649,31 +688,137 @@ body {
   */
 }
 .modal-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  background: linear-gradient(to right, #A21B1D 0%, #A51A1C 15%, #AF191C 27%, #C1181C 39%, #DA161C 51%, #E1161C 53%);
+  margin-top: 0 !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
   text-align: center;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2.5rem;
+  font-size: 1.4rem;
 }
 .modal-content p {
   font-size: 1.2rem;
   text-align: center;
   margin-bottom: 2rem;
+  color: #333;
 }
-.modal-content button {
-  /* Estilo del botón Cerrar */
-  background: #fff;
-  border: none;
+.modal-content .btn-descuento {
+  background: linear-gradient(180deg, #ffffff 0%, #fff 100%);
+  color: #e2161b;
+  font-weight: bold;
   border-radius: 10px;
-  width: 120px;
-  height: 40px;
+  padding: 12px 20px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background 0.3s ease;
+  margin: 0 auto;
+}
+.modal-content .btn-descuento:hover {
+  background: #ffe4e4;
+}
+
+.prelaunch-box {
+  background-image: url("https://fedesagency.com/Kronen/fondoBlancoConRuleta.png");
+  background-size: cover;
+  color: #333;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+}
+
+.ok-msg {
+  color: #e50019;
+  font-weight: bold;
+}
+
+.logo {
+  max-width: 120px;
+  margin-bottom: 1rem;
+}
+
+.jornada-info .jornada-imagen {
+  width: 80%;
+}
+.jornada-info .jornada-titulo {
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 500;
+  color: #c7f0e7;
+}
+.jornada-info .intermedica {
+  font-weight: 300;
+  font-style: italic;
+}
+.jornada-info .jornada-edicion {
+  color: #0caa80;
+  font-weight: bold;
+  margin: 0.2rem 0;
+}
+.jornada-info .jornada-fecha {
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+  color: #c7f0e7;
+}
+
+.agendate-box h2 {
+  font-size: 1.4rem;
+  color: #e50019;
+  margin-bottom: 1rem;
+}
+.agendate-box .descripcion {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.agendate-box .descripcion .rojo {
+  color: #e50019;
+}
+.agendate-box .descripcion .premio {
+  font-weight: bold;
+  border: #0caa80 2px solid;
+  padding: 1px 7px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  position: relative;
+  top: 2px;
+}
+.agendate-box .recordatorio {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+.agendate-box .btn-notificar {
+  background-color: #e50019;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1rem;
-  color: #333;
-  margin: 0 auto; /* Centra horizontalmente */
-  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.modal-content button:hover {
-  background-color: #ccc;
+
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.redes img {
+  width: 28px;
+  height: 28px;
 }
 
 .ruleta-development-message {

@@ -13,6 +13,7 @@ const slidesTemporales = [
   { img: '/assets/images/ofertas/OM ABRIL31.jpg', alt: 'Oferta 31' },
   { img: '/assets/images/ofertas/OM ABRIL32.jpg', alt: 'Oferta 32' },
   { img: '/assets/images/ofertas/OM ABRIL33.jpg', alt: 'Oferta 33' },
+  
 ];
 
 const OfertasTemporales = () => {

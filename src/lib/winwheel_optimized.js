@@ -259,7 +259,9 @@ function Segment(opts){
     textFontWeight: null,
     textOrientation: null,
     textAlignment: null,
-    textMargin: null
+    textMargin: null,
+    image: null,             
+    imageURL: null            
   };
   for (let k in def){
     if (opts && typeof opts[k] !== 'undefined'){
@@ -289,6 +291,7 @@ Winwheel.prototype.drawSegments = function(){
 
   for (let i = 0; i < n; i++){
     let seg = this.segments[i];
+    console.log('drawSegments => i=', i, 'seg=', seg);
     if (!seg) continue;
 
     let angleStart = (i * arcAngle) + this.rotationAngle;
@@ -339,31 +342,46 @@ Winwheel.prototype.drawSegments = function(){
   this.drawSegmentText();
 };
 
-Winwheel.prototype.drawSegmentText = function(){
-  let n = this.numSegments;
-  let arcAngle = 360 / n;
+Winwheel.prototype.drawSegmentText = function() {
+  const arcAngle = 360 / this.numSegments;
 
-  for (let i=0; i<n; i++){
-    let seg = this.segments[i];
-    if (!seg) continue;
+  for (let i = 0; i < this.numSegments; i++) {
+    const seg = this.segments[i];
+    if (!seg || !seg.image) continue;
 
-    let angleCenter = (i * arcAngle) + (arcAngle/2) + this.rotationAngle;
+    const angleCenter = (i * arcAngle) + (arcAngle / 2) + this.rotationAngle;
 
     this.ctx.save();
     this.ctx.translate(this.centerX, this.centerY);
     this.ctx.rotate(this.degToRad(angleCenter));
 
-    let fontFamily= seg.textFontFamily|| this.textFontFamily;
-    let fontSize= seg.textFontSize|| this.textFontSize;
-    let fontWeight= seg.textFontWeight|| this.textFontWeight;
-    let fillStyle= seg.textFillStyle|| 'black';
+    // 🔄 Escalado proporcional
+    const originalWidth = seg.image.naturalWidth || 100;
+    const originalHeight = seg.image.naturalHeight || 100;
+    const maxSize = 100;
 
-    this.ctx.font= fontWeight+' '+fontSize+'px '+fontFamily;
-    this.ctx.fillStyle= fillStyle;
-    this.ctx.textAlign='center';
-    this.ctx.textBaseline='middle';
-    let textPadding = 30; 
-    this.ctx.fillText(seg.text, 0, -(this.outerRadius - textPadding));
+    const aspectRatio = originalWidth / originalHeight;
+
+    let drawWidth = maxSize;
+    let drawHeight = maxSize;
+
+    if (aspectRatio > 1) {
+      // Más ancha que alta
+      drawHeight = maxSize / aspectRatio;
+    } else {
+      // Más alta que ancha (como tu caso)
+      drawWidth = maxSize * aspectRatio;
+    }
+
+    const offsetY = this.outerRadius - drawHeight + 90;
+
+    this.ctx.drawImage(
+      seg.image,
+      -drawWidth / 2,
+      -offsetY,
+      drawWidth,
+      drawHeight
+    );
 
     this.ctx.restore();
   }

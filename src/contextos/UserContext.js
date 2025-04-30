@@ -7,7 +7,7 @@ export function UserProvider({ children }) {
     nombre: '',
     apellido: '',
     email: '',
-    telefono: '',
+    veterinaria: '',
     premio: null
   });
 

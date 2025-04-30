@@ -1,0 +1,104 @@
+// src/components/PrelaunchMessage.scss
+
+.prelaunch-box {
+    background-image: url('https://fedesagency.com/Kronen/fondoBlancoConRuleta.png');
+    background-size: cover;
+    color: #333;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-radius: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+  }
+  .ok-msg{
+    color: #e50019;
+    font-weight: bold;
+  }
+  .logo {
+    max-width: 120px;
+    margin-bottom: 1rem;
+  }
+  
+  .jornada-info {
+    .jornada-imagen{
+      width: 80%;
+    }
+    .jornada-titulo {
+      font-size: 1.3rem;
+      margin: 0;
+      font-weight: 500;
+      color: #c7f0e7;
+    }
+    .intermedica {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .jornada-edicion {
+      color: #0caa80;
+      font-weight: bold;
+      margin: 0.2rem 0;
+    }
+    .jornada-fecha {
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: #c7f0e7;
+    }
+  }
+  
+  .agendate-box {
+    h2 {
+      font-size: 1.4rem;
+      color: #e50019;
+      margin-bottom: 1rem;
+    }
+    .descripcion {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      .rojo {
+        color: #e50019;
+      }
+      .premio {
+        font-weight: bold;
+        border: #0caa80 2px solid;
+        padding: 1px 7px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        position: relative;
+        top: 2px;
+      }
+    }
+    .recordatorio {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+  
+    .btn-notificar {
+      background-color: #e50019;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  }
+  
+  .redes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  
+    img {
+      width: 28px;
+      height: 28px;
+    }
+  }
+  
