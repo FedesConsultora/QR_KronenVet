@@ -1,6 +1,7 @@
 import React, { createContext, useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ReactHowler from 'react-howler';
+import { usePreloadedSound } from '../hooks/usePreloadedSound.js';
 
 export const SoundContext = createContext();
 
@@ -10,32 +11,41 @@ export function SoundProvider({ children }) {
 
   const [backgroundVolume, setBackgroundVolume] = useState(0.6);
   const [backgroundPlaying, setBackgroundPlaying] = useState(isRuletaPath);
-
-  const [spinLoopPlaying, setSpinLoopPlaying] = useState(false);
   const [buttonSoundPlaying, setButtonSoundPlaying] = useState(false);
 
   const backgroundRef = useRef(null);
-  const spinLoopRef = useRef(null);
   const buttonRef = useRef(null);
 
-  // 🔄 Si cambia la ruta, activar/desactivar sonido de fondo según corresponda
+  // ✅ Precargar el sonido spinStart.mp3
+  const { soundRef: spinSoundRef, isLoaded: spinLoaded } = usePreloadedSound('/assets/sounds/spinStart.mp3', {
+    loop: true,
+    volume: 1.0,
+    html5: false // usar memoria, no streaming
+  });
+
+  // 🔄 Sonido de fondo depende de la ruta
   useEffect(() => {
     if (isRuletaPath) {
       setBackgroundPlaying(true);
     } else {
-      if (backgroundRef.current && backgroundRef.current.howl) {
+      if (backgroundRef.current?.howl) {
         backgroundRef.current.howl.fade(backgroundRef.current.howl.volume(), 0, 300);
       }
       setTimeout(() => setBackgroundPlaying(false), 300);
     }
   }, [location]);
 
-  const adjustBackgroundVolume = (newVolume) => {
-    setBackgroundVolume(newVolume);
-  };
+  // Opcional: log de precarga para debug
+  useEffect(() => {
+    if (spinLoaded) {
+      console.log("✅ spinStart.mp3 está completamente precargado.");
+    }
+  }, [spinLoaded]);
+
+  const adjustBackgroundVolume = (vol) => setBackgroundVolume(vol);
 
   const stopBackgroundSound = () => {
-    if (backgroundRef.current && backgroundRef.current.howl) {
+    if (backgroundRef.current?.howl) {
       backgroundRef.current.howl.fade(backgroundRef.current.howl.volume(), 0, 300);
     }
     setTimeout(() => setBackgroundPlaying(false), 300);
@@ -44,15 +54,18 @@ export function SoundProvider({ children }) {
   const playLoopSound = () => setBackgroundPlaying(true);
 
   const playSpinLoopSound = () => {
-    console.log("playSpinLoopSound called");
-    setSpinLoopPlaying(true);
+    const spin = spinSoundRef.current;
+    if (spin && spinLoaded && !spin.playing()) {
+      spin.play();
+    }
   };
 
   const stopSpinLoopSound = () => {
-    if (spinLoopRef.current && spinLoopRef.current.howl) {
-      spinLoopRef.current.howl.fade(spinLoopRef.current.howl.volume(), 0, 300);
+    const spin = spinSoundRef.current;
+    if (spin && spin.playing()) {
+      spin.fade(spin.volume(), 0, 300);
+      setTimeout(() => spin.stop(), 300);
     }
-    setTimeout(() => setSpinLoopPlaying(false), 300);
   };
 
   const playButtonSound = () => setButtonSoundPlaying(true);
@@ -64,20 +77,17 @@ export function SoundProvider({ children }) {
     adjustBackgroundVolume,
     stopBackgroundSound,
     playLoopSound,
-    spinLoopPlaying,
     playSpinLoopSound,
     stopSpinLoopSound,
     buttonSoundPlaying,
     playButtonSound,
     stopButtonSound,
     backgroundRef,
-    spinLoopRef,
-    buttonRef,
+    buttonRef
   };
 
   return (
     <SoundContext.Provider value={value}>
-      {/* ✅ Sonido de fondo solo si está activado y en /ruleta */}
       {backgroundPlaying && isRuletaPath && (
         <ReactHowler
           src="/assets/sounds/wheelLoop.mp3"
@@ -85,19 +95,10 @@ export function SoundProvider({ children }) {
           volume={backgroundVolume}
           loop={true}
           ref={backgroundRef}
+          preload="auto"
         />
       )}
 
-      {/* Spin loop controlado */}
-      <ReactHowler
-        src="/assets/sounds/spinStart.mp3"
-        playing={spinLoopPlaying}
-        volume={1.0}
-        loop={true}
-        ref={spinLoopRef}
-      />
-
-      {/* Sonido de botón */}
       {buttonSoundPlaying && (
         <ReactHowler
           src="/assets/sounds/buttonSound.mp3"
@@ -106,6 +107,7 @@ export function SoundProvider({ children }) {
           loop={false}
           ref={buttonRef}
           onEnd={stopButtonSound}
+          preload="auto"
         />
       )}
 

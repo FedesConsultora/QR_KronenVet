@@ -53,7 +53,7 @@ function PrizeModal({ premio, onClose }) {
             Ver productos con 10% OFF
           </a>
         ) : (
-          <button onClick={handleClose}>Cerrar</button>
+          <button className="btn-descuento" onClick={handleClose}>Cerrar</button>
         )}
       </div>
     </div>
