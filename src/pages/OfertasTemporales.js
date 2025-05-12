@@ -8,11 +8,18 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 const slidesTemporales = [
-  { img: '/assets/images/ofertas/OM ABRIL29.jpg', alt: 'Oferta 29' },
-  { img: '/assets/images/ofertas/OM ABRIL30.jpg', alt: 'Oferta 30' },
-  { img: '/assets/images/ofertas/OM ABRIL31.jpg', alt: 'Oferta 31' },
-  { img: '/assets/images/ofertas/OM ABRIL32.jpg', alt: 'Oferta 32' },
-  { img: '/assets/images/ofertas/OM ABRIL33.jpg', alt: 'Oferta 33' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo1.jpg', alt: 'Oferta 1' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo2.jpg', alt: 'Oferta 2' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo3.jpg', alt: 'Oferta 3' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo4.jpg', alt: 'Oferta 4' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo5.jpg', alt: 'Oferta 5' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo6.jpg', alt: 'Oferta 6' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo7.jpg', alt: 'Oferta 7' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo8.jpg', alt: 'Oferta 8' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo9.jpg', alt: 'Oferta 9' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo10.jpg', alt: 'Oferta 10' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo11.jpg', alt: 'Oferta 11' },
+  { img: '/assets/images/ofertasTemporales/OS Mayo12.jpg', alt: 'Oferta 12' },
   
 ];
 

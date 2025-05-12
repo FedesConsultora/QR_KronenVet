@@ -821,6 +821,116 @@ body {
   height: 28px;
 }
 
+.progress-bar-container {
+  position: relative;
+  padding: 3rem 0;
+  width: 80%;
+  margin-top: 4.5rem;
+  /* ---------- burbujas genéricas ---------- */
+  /* ---------- dirección arriba (globo sobre la barra) ---------- */
+  /* ---------- dirección abajo (globo bajo la barra) ---------- */
+}
+.progress-bar-container .progress-track {
+  background: #e0e0e0;
+  height: 0.5rem;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+.progress-bar-container .progress-fill {
+  background: #49B79E;
+  height: 100%;
+  width: 0;
+  border-radius: 0.25rem;
+  transition: width 5s linear;
+}
+.progress-bar-container .bubble {
+  position: absolute;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.progress-bar-container .bubble::before {
+  content: "";
+  background: url("https://fedesagency.com/mailing/KronenVet/MailingsRuleta/fondoPremios.png") no-repeat center/contain;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  z-index: -2;
+  top: -8px;
+}
+.progress-bar-container .bubble img {
+  width: 48px;
+  margin-bottom: 0.3rem;
+  user-select: none;
+}
+.progress-bar-container .bubble .bubble-box {
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 0.4rem 0.6rem;
+  min-width: 140px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+  /* flecha única, abajo por defecto ↓ */
+}
+.progress-bar-container .bubble .bubble-box::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: #000; /* bordes negro */
+}
+.progress-bar-container .bubble.visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.05);
+}
+.progress-bar-container .bubble--up {
+  bottom: 65%;
+  transform: translateX(-50%) translateY(50%) scale(0.9);
+}
+.progress-bar-container .bubble--up .bubble-box::after {
+  top: 100%; /* flecha abajo del globo */
+  border-top-color: #000;
+  border-bottom: 0;
+}
+.progress-bar-container .bubble--down {
+  top: calc(50% + 0.5rem); /* .5rem = alto de la barra */
+  transform: translateX(-50%) translateY(-50%) scale(0.9);
+}
+.progress-bar-container .bubble--down .bubble-box::after {
+  bottom: 100%; /* flecha arriba del globo */
+  transform: translateX(-50%) rotate(180deg);
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .progress-bar-container {
+    padding: 4rem 0;
+  }
+  .progress-bar-container .bubble img {
+    width: 80px;
+  }
+  .progress-bar-container .bubble-box {
+    min-width: 200px;
+    font-size: 0.85rem;
+  }
+  .progress-bar-container .bubble-name {
+    font-size: 0.9rem;
+  }
+  .progress-bar-container .bubble-price {
+    font-size: 0.8rem;
+  }
+}
 .ruleta-development-message {
   margin-top: 3rem;
   text-align: center;

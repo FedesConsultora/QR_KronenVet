@@ -12,6 +12,7 @@
 @use 'components/UserForm';
 @use 'components/PrizeModal';
 @use 'components/PrelaunchMessage';
+@use 'components/progressBar';
 
 .ruleta-development-message {
     margin-top: 3rem;

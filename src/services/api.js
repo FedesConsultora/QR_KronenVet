@@ -1,5 +1,5 @@
 // src/services/api.js
-const endpoint = "https://script.google.com/macros/s/AKfycbwMlPjpiyPIhbURx0ftviW51mbuG9Ac9QGQtkJrA82oE28jeVDQjAGxg02P9Qd533Po/exec";
+const endpoint = "https://script.google.com/macros/s/AKfycbxgjcJyHBR3kzqHzz9CfzfJpttEJWuZmHjX-Is_2GzWcXc5sPO4ZzP6sT-lsK7sROu9/exec";
 
 export const saveUTMs = (utms) => {
   const payload = { ...utms, tipo: "utm" };

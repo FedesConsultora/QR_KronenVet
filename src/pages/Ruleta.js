@@ -8,6 +8,7 @@ import { RULETA_HABILITADA } from '../constants.js';
 import UserForm from '../components/UserForm.js';
 import DraggablePrizeWheel from '../components/DraggablePrizeWheel.js';
 import PrelaunchMessage from '../components/PrelaunchMessage.js';
+import ProgressBarPremios from '../components/ProgressBarPremios.js';
 
 const Ruleta = () => {
   const [searchParams] = useSearchParams();
@@ -46,7 +47,10 @@ const Ruleta = () => {
 
       {!userFormComplete && (
         /* Aún no completó datos => vemos el formulario */
-        <UserForm />
+        <>
+          <UserForm />
+        </>
+        
       )}
 
       {userFormComplete && !RULETA_HABILITADA && (
@@ -56,7 +60,10 @@ const Ruleta = () => {
 
       {userFormComplete && RULETA_HABILITADA && (
         /* Datos completos + ruleta habilitada */
-        <DraggablePrizeWheel />
+        <>
+          <DraggablePrizeWheel />
+          <ProgressBarPremios /> 
+        </>
       )}
     </main>
   );

@@ -1,0 +1,104 @@
+.progress-bar-container {
+  position: relative;
+  padding: 3rem 0;
+  width: 80%;
+  margin-top: 4.5rem;
+  .progress-track {
+    background: #e0e0e0;
+    height: .5rem;
+    width: 100%;
+    border-radius: .25rem;
+  }
+  .progress-fill {
+    background: #49B79E;
+    height: 100%;
+    width: 0;
+    border-radius: .25rem;
+    transition: width 5s linear;
+  }
+
+  /* ---------- burbujas genéricas ---------- */
+  .bubble {
+    position: absolute;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity .5s ease, transform .5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    &::before {
+      content: "";
+      background: url('https://fedesagency.com/mailing/KronenVet/MailingsRuleta/fondoPremios.png') no-repeat center/contain;
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      z-index: -2;
+      top: -8px;
+    }
+
+    img { width: 48px; margin-bottom: .3rem; user-select: none; }
+
+    .bubble-box {
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 12px;
+      padding: .4rem .6rem;
+      min-width: 140px;
+      font-size: .7rem;
+      font-weight: 600;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      position: relative;
+
+      /* flecha única, abajo por defecto ↓ */
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 10px solid transparent;
+        border-top-color: #000;   /* bordes negro */
+      }
+    }
+
+    &.visible { opacity: 1; transform: translateX(-50%) scale(1.05); }
+  }
+
+  /* ---------- dirección arriba (globo sobre la barra) ---------- */
+  .bubble--up {
+    bottom: 65%;
+    transform: translateX(-50%) translateY(50%) scale(.9);
+
+    .bubble-box::after {
+      top: 100%;         /* flecha abajo del globo */
+      border-top-color: #000;
+      border-bottom: 0;
+    }
+  }
+
+  /* ---------- dirección abajo (globo bajo la barra) ---------- */
+  .bubble--down {
+    top: calc(50% + .5rem);   /* .5rem = alto de la barra */
+    transform: translateX(-50%) translateY(-50%) scale(.9);
+
+    .bubble-box::after {
+      bottom: 100%;           /* flecha arriba del globo */
+      transform: translateX(-50%) rotate(180deg);
+    }
+  }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .progress-bar-container {
+    padding: 4rem 0;
+
+    .bubble img      { width: 80px; }
+    .bubble-box      { min-width: 200px; font-size: .85rem; }
+    .bubble-name     { font-size: .9rem; }
+    .bubble-price    { font-size: .8rem; }
+  }
+}

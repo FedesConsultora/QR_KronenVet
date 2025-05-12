@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 const slides = [
-  {link: 'https://www.kronenvet.com.ar/?Find=power%20gold', img: '/assets/images/ofertas/OM MAYO-01.jpg', alt: 'Oferta 1'},
+  { link: 'https://www.kronenvet.com.ar/?Find=power%20gold', img: '/assets/images/ofertas/OM MAYO-01.jpg', alt: 'Oferta 1'},
   { link: 'https://www.kronenvet.com.ar/?Find=power%20gold', img: '/assets/images/ofertas/OM MAYO-02.jpg', alt: 'Oferta 2' },
   { link: 'https://www.kronenvet.com.ar/?Find=power%20gold', img: '/assets/images/ofertas/OM MAYO-03.jpg', alt: 'Oferta 3' },
   { link: 'https://www.kronenvet.com.ar/?Find=diazepan', img: '/assets/images/ofertas/OM MAYO-04.jpg', alt: 'Oferta 4' },
@@ -42,6 +42,15 @@ const slides = [
   { link: 'https://www.kronenvet.com.ar/?Find=cardiobendan' ,img: '/assets/images/ofertas/OM MAYO-33.jpg', alt: 'Oferta 33' },
   { link: 'https://www.kronenvet.com.ar/?Find=perfos%20max' ,img: '/assets/images/ofertas/OM MAYO-34.jpg', alt: 'Oferta 34' },
   { link: 'https://www.kronenvet.com.ar/?Find=brouwer' ,img: '/assets/images/ofertas/OM MAYO-35.jpg', alt: 'Oferta 35' },
+  
+  { link: 'https://www.kronenvet.com.ar/?Find=kit%20full%20reproductivo' ,img: '/assets/images/ofertas/OM MAYO-36.jpg', alt: 'Oferta 36' },
+  { link: 'https://www.kronenvet.com.ar/?Find=kit%20full%20reproductivo' ,img: '/assets/images/ofertas/OM MAYO-37.jpg', alt: 'Oferta 37' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05129' ,img: '/assets/images/ofertas/OM MAYO-38.jpg', alt: 'Oferta 38' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05129' ,img: '/assets/images/ofertas/OM MAYO-39.jpg', alt: 'Oferta 39' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05833' ,img: '/assets/images/ofertas/OM MAYO-40.jpg', alt: 'Oferta 40' },
+  { link: 'https://www.kronenvet.com.ar/?IdArt=05833' ,img: '/assets/images/ofertas/OM MAYO-41.jpg', alt: 'Oferta 41' },
+  { link: 'https://www.kronenvet.com.ar/?Find=providean%20bh-pur' ,img: '/assets/images/ofertas/OM MAYO-42.jpg', alt: 'Oferta 42' },
+  
 ];
 
 const Ofertas = () => {
