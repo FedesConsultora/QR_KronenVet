@@ -14,7 +14,6 @@ function App() {
         <Route path="/ofertas" element={<Ofertas />} />
         <Route path="/capacitaciones" element={<Capacitaciones />} />
         <Route path="/ruleta" element={<Ruleta />} />
-        {/* Nueva ruta */}
         <Route path="/ofertas-temporales" element={<OfertasTemporales/>} />
       </Routes>
     </div>

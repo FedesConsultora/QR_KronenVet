@@ -15,7 +15,7 @@ const Home = () => {
   const handleCloseModal = () => setIsModalOpen(false);
 
   // Simplemente cambia esto a true o false para mostrar/ocultar las ofertas temporales
-  const [showEphemeralOffers] = useState(true); // ponlo en false para ocultar el botón
+  const [showEphemeralOffers] = useState(false); // ponlo en false para ocultar el botón
 
   const handleOfertasTemporales = () => {
     navigate('/ofertas-temporales');
