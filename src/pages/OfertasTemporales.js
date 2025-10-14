@@ -29,7 +29,7 @@ const OfertasTemporales = () => {
         <button className="btnBack" onClick={handleBack}>
           <img src="/assets/icons/iconoAtras.png" alt="Flecha atrás" />
         </button>
-
+        
         <div className="carousel">
           <Swiper
             modules={[Pagination]}
