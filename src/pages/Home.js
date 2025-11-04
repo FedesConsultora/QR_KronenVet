@@ -64,7 +64,7 @@ const Home = () => {
         <iframe
           src="/docs/legajoImpositivo.pdf#toolbar=0"
           title="Legajo Impositivo"
-          style={{ width: '100%', height: '100%', border: 'none', flex: 1 }}
+          style={{ width: '100%', height: '400%', border: 'none', flex: 1 }}
         />
       </ReactModal>
 

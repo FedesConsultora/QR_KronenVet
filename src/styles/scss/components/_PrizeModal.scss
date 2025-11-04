@@ -1,83 +1,173 @@
+/* ——— MODAL BASE ——— */
 .modal-overlay {
-    /* Fondo semitransparente que cubre toda la pantalla */
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  /* Fondo con imagen blanca/ruleta */
+  background-image: url('https://fedesagency.com/Kronen/fondoBlancoConRuleta.png');
+  background-size: cover;
+  background-position: center;
+  color: #222;
+  width: min(96vw, 1100px);
+  max-height: 90vh;            /* << SCROLL CONTROL */
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.25);
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header, body (scroll), footer */
+  position: relative;
+}
+
+/* Variante para ofertas (ancha) */
+.modal-content--offers {
+  width: min(96vw, 1100px);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 8px; right: 10px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  color: #333;
+  font-size: 22px;
+  line-height: 36px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  cursor: pointer;
+}
+
+/* Header con título/degradé */
+.modal-header {
+  padding: 20px 20px 8px;
+  text-align: center;
+}
+.modal-title {
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  background: linear-gradient(
+    to right,
+    #A21B1D 0%,
+    #A51A1C 15%,
+    #AF191C 27%,
+    #C1181C 39%,
+    #DA161C 51%,
+    #E1161C 53%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.modal-subtitle,
+.modal-text {
+  margin: 6px 0;
+  color: #333;
+  font-size: clamp(.95rem, 1.6vw, 1.1rem);
+}
+
+/* Cuerpo scrolleable */
+.modal-body {
+  padding: 12px 16px 4px;
+  overflow: auto;               /* << SCROLL */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Footer fijo abajo */
+.modal-footer {
+  padding: 10px 16px 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Botones */
+.btn-descuento,
+.btn-secundario {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.btn-descuento {
+  background: #e2161b;
+  color: #fff;
+}
+.btn-descuento:hover { filter: brightness(1.05); }
+.btn-secundario {
+  background: #f5f5f5;
+  color: #333;
+}
+
+/* ——— CARRUSEL DENTRO DEL MODAL ——— */
+.modal-promos { width: 100%; margin: 8px auto 0; }
+
+.promos--in-modal {
+  .swiper { height: auto; }
+  .swiper-wrapper { align-items: stretch; }
+
+  /* Cada slide ocupa alto de la imagen contenida */
+  .swiper-slide.carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Tarjeta clickable del slide */
+  .carousel-card {
+    display: block;
+    width: fit-content;
+    max-width: 520px;     /* evita que una sola promo se haga gigante */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,.1);
+    transition: transform .18s ease;
+  }
+  .carousel-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Imagen contenida (no se recorta, entra completa) */
+  .carousel-card img {
+    width: 100%;
+    height: clamp(220px, 26vw, 360px); /* altura adaptable */
+    object-fit: contain;               /* << que “entre bien” */
+    background: #fff;
+    display: block;
+  }
+
+  /* Bullets rojos */
+  .swiper-pagination {
     display: flex;
     justify-content: center;
-    align-items: center;
-    z-index: 9999; 
+    gap: 6px;
+    .swiper-pagination-bullet {
+      width: 10px; height: 10px;
+      background-color: #e2161b;
+      opacity: .35;
+    }
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+    }
   }
-  
-  .modal-content {
-    /* Fondo con imagen, similar a tu snippet */
-    background-image: url('https://fedesagency.com/Kronen/fondoBlancoConRuleta.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px;
-    width: 80%;
-    max-width: 600px; /* limita el ancho en pantallas grandes */
-    height: auto; /* en lugar de forzar 80% de alto */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    color: #fff; /* Texto blanco sobre rojo */
-  
-    h2 {
-      background: linear-gradient(
-        to right,
-        #A21B1D 0%,
-        #A51A1C 15%,
-        #AF191C 27%,
-        #C1181C 39%,
-        #DA161C 51%,
-        #E1161C 53%
-      );
-      margin-top: 0 !important;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      font-weight: bold;
-      text-align: center;
-      padding-bottom: 0.5rem;
-      margin-bottom: 2.5rem;
-      font-size: 1.4rem;
-    }
-    
-    p {
-      font-size: 1.2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #333;
-    }
-  
-    .btn-descuento {
-      background: linear-gradient(180deg, #ffffff 0%,#fff 100%);
-      color: #e2161b;
-      font-weight: bold;
-      border-radius: 10px;
-      padding: 12px 20px;
-      text-align: center;
-      display: inline-block;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: background 0.3s ease;
-      margin: 0 auto;
-    }
-    
-    .btn-descuento:hover {
-      background: #ffe4e4;
-    }
-  
-    /* Si quisieras un botón circular en la esquina, haz algo como:
-    .modal-close-btn {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      ...
-    }
-    */
+}
+
+/* ——— CARRUSEL EN PÁGINA (si lo usás fuera del modal) ——— */
+.carousel.promos:not(.promos--in-modal) {
+  .swiper-slide.carousel-item { display: flex; justify-content: center; }
+  .carousel-card img {
+    height: auto;
+    object-fit: cover;
   }
-  
+} 

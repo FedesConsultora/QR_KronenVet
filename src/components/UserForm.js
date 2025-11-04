@@ -1,58 +1,48 @@
-import React, { useContext, useState, useEffect } from 'react';
+// src/components/UserForm.js
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { UserContext } from '../contextos/UserContext.js';
-import { saveUserData, bringEmails, getUserByEmail } from '../services/api.js';
-import { SoundContext } from '../contextos/SoundContext.js';
+import { saveUserData, getUserByEmail } from '../services/api.js';
 import DuplicateEmailModal from './DuplicateEmailModal.js';
-import { useSearchParams } from 'react-router-dom';
+
+const LS_KEY = 'kvet_ruleta_user';
 
 function UserForm() {
   const { userData, setUserData } = useContext(UserContext);
-  const { playButtonSound } = useContext(SoundContext);
 
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [veterinaria, setVeterinaria] = useState('');
-  const [existingEmails, setExistingEmails] = useState([]);
-  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const [searchParams] = useSearchParams();
-  const emailFromURL = searchParams.get('email') || '';
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const inFlightRef = useRef(false); // guard extra por seguridad
 
+  // Si ya está en localStorage → saltar form, cargar datos y avisar
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const emailsData = await bringEmails();
-        if (emailsData.status === "success") {
-          setExistingEmails(emailsData.emails);
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (raw) {
+        const stored = JSON.parse(raw);
+        if (stored?.email) {
+          setUserData({
+            nombre: stored.nombre || '',
+            apellido: stored.apellido || '',
+            email: stored.email,
+            veterinaria: stored.veterinaria || '',
+            premio: null,
+            yaGiro: stored.yaGiro || false
+          });
+          setShowDuplicateModal(true);
+          setLoading(false);
+          return;
         }
-  
-        if (emailFromURL) {
-          const res = await getUserByEmail(emailFromURL);
-          if (res.status === "success") {
-            const u = res.user;
-            setUserData({
-              email: u.email,
-              nombre: u.nombre || '',
-              apellido: u.apellido || '',
-              veterinaria: u.veterinaria || '',
-              premio: null,
-              yaGiro: u.yaGiro || false
-            });
-          }
-        }
-      } catch (err) {
-        console.error("Error en carga inicial:", err);
-      } finally {
-        setLoading(false);
       }
-    };
-  
-    fetchData();
-  }, []);
+    } catch {}
+    setLoading(false);
+  }, [setUserData]);
 
-  // Mientras carga: mostramos spinner
   if (loading) {
     return (
       <div style={{ textAlign: 'center', marginTop: '80px', color: '#ffffff' }}>
@@ -62,94 +52,85 @@ function UserForm() {
     );
   }
 
-  // Si ya tenemos un user cargado (vía email URL), no mostramos el form
-  if (userData?.email && emailFromURL && userData.email === emailFromURL) {
-    return null;
+  // Si ya cargamos un usuario, no mostramos el form (mostramos el aviso)
+  if (userData?.email) {
+    return (
+      <>
+        {showDuplicateModal && (
+          <DuplicateEmailModal onClose={() => setShowDuplicateModal(false)} />
+        )}
+      </>
+    );
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    playButtonSound();
-  
-    const emailLower = email.toLowerCase();
-    const matchedUser = existingEmails.find(user =>
-      (typeof user === 'string' ? user : user.email).toLowerCase() === emailLower
-    );
-  
-    if (matchedUser) {
-      // Si ya giró, mostramos el modal y no dejamos avanzar
-      if (matchedUser.yaGiro) {
+    if (submitting || inFlightRef.current) return; // doble click guard
+    setSubmitting(true);
+    inFlightRef.current = true;
+
+    const emailLower = (email || '').trim().toLowerCase();
+    if (!emailLower) {
+      setSubmitting(false);
+      inFlightRef.current = false;
+      return;
+    }
+
+    try {
+      // 1) Chequear en BBDD
+      const res = await getUserByEmail(emailLower);
+      if (res?.status === 'success' && res.user) {
+        const u = {
+          nombre: res.user.nombre || nombre,
+          apellido: res.user.apellido || apellido,
+          email: res.user.email || emailLower,
+          veterinaria: res.user.veterinaria || veterinaria,
+          yaGiro: res.user.yaGiro || false
+        };
+        localStorage.setItem(LS_KEY, JSON.stringify(u));
+        setUserData(u);
         setShowDuplicateModal(true);
         return;
       }
-  
-      // Si NO giró, permitimos jugar pero no guardamos otra vez
-      const userToSet = {
-        nombre: matchedUser.nombre || nombre,
-        apellido: matchedUser.apellido || apellido,
-        veterinaria: matchedUser.veterinaria || veterinaria,
-        email: matchedUser.email || email,
-        yaGiro: false
-      };
-  
-      setUserData(userToSet);
-      return;
+
+      // 2) Nuevo usuario
+      const newUser = { nombre, apellido, email: emailLower, veterinaria, premio: null };
+      await saveUserData(newUser).catch(() => {}); // no-cors → opaco; el backend ya evita duplicados
+      localStorage.setItem(LS_KEY, JSON.stringify(newUser));
+      setUserData(newUser);
+    } catch (err) {
+      console.error('Error en alta usuario:', err);
+      alert('No pudimos registrar tus datos. Intentá de nuevo.');
+    } finally {
+      setSubmitting(false);
+      inFlightRef.current = false;
     }
-  
-    // Nuevo usuario → se guarda normalmente
-    const newUser = { nombre, apellido, email, veterinaria, premio: null };
-    setUserData(newUser);
-  
-    saveUserData(newUser)
-      .then(() => {
-        console.log("Datos del usuario guardados");
-        setExistingEmails(prev => [...prev, { ...newUser, yaGiro: false }]);
-      })
-      .catch(err => console.error("Error guardando datos del usuario:", err));
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="user-form">
+      <form onSubmit={handleSubmit} className="user-form" aria-busy={submitting}>
         <h2>Registra tus datos</h2>
         <h2>para jugar</h2>
         <div>
           <label>Nombre:</label>
-          <input
-            type="text"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-          />
+          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required disabled={submitting} />
         </div>
         <div>
           <label>Apellido:</label>
-          <input
-            type="text"
-            value={apellido}
-            onChange={(e) => setApellido(e.target.value)}
-            required
-          />
+          <input type="text" value={apellido} onChange={(e) => setApellido(e.target.value)} required disabled={submitting} />
         </div>
         <div>
           <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={submitting} />
         </div>
         <div>
           <label>Veterinaria:</label>
-          <input
-            type="text"
-            value={veterinaria}
-            onChange={(e) => setVeterinaria(e.target.value)}
-            required
-          />
+          <input type="text" value={veterinaria} onChange={(e) => setVeterinaria(e.target.value)} required disabled={submitting} />
         </div>
-        <button type="submit">Enviar</button>
+        <button type="submit" disabled={submitting}>
+          {submitting ? 'Enviando…' : 'Enviar'}
+        </button>
       </form>
 
       {showDuplicateModal && (

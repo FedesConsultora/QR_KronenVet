@@ -1,51 +1,55 @@
 // src/components/PrelaunchMessage.js
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../contextos/UserContext.js';
-import { suscribirNotificacion } from '../services/api.js';   // 👈 servicio POST {tipo:'notify'}
+import { suscribirNotificacion } from '../services/api.js';
+import { RULETA_FECHA_LANZAMIENTO_HUMANA } from '../constants.js';
+
+const LS_NOTIFY = 'kvet_ruleta_notify_ok';
 
 export default function PrelaunchMessage() {
   const { userData } = useContext(UserContext);
   const [enviado, setEnviado] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleNotify = () => {
+  // Persistencia: si ya se notificó alguna vez (o auto-notificado), deshabilitar botón
+  useEffect(() => {
+    const ok = localStorage.getItem(LS_NOTIFY) === '1';
+    if (ok) setEnviado(true);
+  }, []);
+
+  const handleNotify = async () => {
     if (!userData?.email) {
       alert('Primero completá tus datos 😉');
       return;
     }
+    if (enviado || loading) return;
 
-    suscribirNotificacion({ email: userData.email, nombre: userData.nombre })
-      .then(() => {
-        setEnviado(true);
-      })
-      .catch(() => {
-        alert('Ups, no pudimos registrarte. Intentá de nuevo.');
-      });
+    setLoading(true);
+    try {
+      await suscribirNotificacion({ email: userData.email, nombre: userData.nombre });
+      localStorage.setItem(LS_NOTIFY, '1');
+      setEnviado(true);
+    } catch {
+      alert('Ups, no pudimos registrarte. Intentá de nuevo.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="prelaunch-box">
-      <div className="jornada-info">
-        <img className="jornada-imagen" src="/assets/images/jornada.png" alt="Jornadas Veterinarias" />
-      </div>
-
       <div className="agendate-box">
-        <h2>¡Agendate esta fecha!</h2>
-
+        <h2>¡Muy pronto!</h2>
         <p className="descripcion">
-          Durante las jornadas vas a poder <strong className="rojo">girar la ruleta</strong> y participar por&nbsp;
-          <span className="premio">premios increíbles</span>.
+          La ruleta estará disponible a partir del <strong className="rojo">{RULETA_FECHA_LANZAMIENTO_HUMANA}</strong>.
         </p>
-
-        <p className="recordatorio">
-          ¿No querés olvidarte?<br />
-          Te lo recordamos nosotros.
-        </p>
+        <p className="recordatorio">Te avisamos por mail cuando se habilite.</p>
 
         {enviado ? (
           <p className="ok-msg">✓ ¡Listo! Te avisaremos por mail.</p>
         ) : (
-          <button className="btn-notificar" onClick={handleNotify}>
-            Notificarme por mail
+          <button className="btn-notificar" onClick={handleNotify} disabled={loading}>
+            {loading ? 'Registrando…' : 'Notificarme por mail'}
           </button>
         )}
       </div>
