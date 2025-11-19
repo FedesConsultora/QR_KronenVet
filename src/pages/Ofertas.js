@@ -34,7 +34,6 @@ const slides = [
   { link: 'https://kronenvet.com.ar/index.html?Find=Power%20Gold', img: '/assets/images/ofertas/OM 27.png', alt: 'Oferta 27' },
   { link: 'https://kronenvet.com.ar/index.html?IdArt=02482', img: '/assets/images/ofertas/OM 28.png', alt: 'Oferta 28' },
   { link: 'https://kronenvet.com.ar/index.html?Find=cidar', img: '/assets/images/ofertas/OM 29.png', alt: 'Oferta 29' },
-  { link: 'https://kronenvet.com.ar/index.html?Find=cidar', img: '/assets/images/ofertas/OM 30.png', alt: 'Oferta 30'},
   { link: 'https://kronenvet.com.ar/index.html?Find=recombitek', img: '/assets/images/ofertas/OM 31.png', alt: 'Oferta 31' },
   { link: 'https://kronenvet.com.ar/index.html?Find=Power%20Ultra', img: '/assets/images/ofertas/OM 32.png', alt: 'Oferta 32' },
   { link: 'https://kronenvet.com.ar/index.html?Find=Power%20Ultra', img: '/assets/images/ofertas/OM 33.png', alt: 'Oferta 33' },
