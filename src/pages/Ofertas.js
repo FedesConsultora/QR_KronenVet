@@ -30,7 +30,6 @@ const slides = [
   { link: 'https://kronenvet.com.ar/index.html?Find=Kualcos', img: '/assets/images/ofertas/OM 22.png', alt: 'Oferta 22' },
   { link: 'https://kronenvet.com.ar/index.html?Find=Kualcos', img: '/assets/images/ofertas/OM 23.png', alt: 'Oferta 23' },
   { link: 'https://kronenvet.com.ar/index.html?Find=Power%20Ultra', img: '/assets/images/ofertas/OM 24.png', alt: 'Oferta 24' },
-  { link: 'https://kronenvet.com.ar/index.html?Find=Power%20comprimidos', img: '/assets/images/ofertas/OM 25.png', alt: 'Oferta 25' },
   { link: 'https://kronenvet.com.ar/index.html?Find=Power%20Gold', img: '/assets/images/ofertas/OM 26.png', alt: 'Oferta 26' },
   { link: 'https://kronenvet.com.ar/index.html?Find=Power%20Gold', img: '/assets/images/ofertas/OM 27.png', alt: 'Oferta 27' },
   { link: 'https://kronenvet.com.ar/index.html?IdArt=02482', img: '/assets/images/ofertas/OM 28.png', alt: 'Oferta 28' },
