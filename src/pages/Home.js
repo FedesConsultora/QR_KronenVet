@@ -29,12 +29,17 @@ const Home = () => {
 
       <section className="navContainer">
         <Logo />
-       <div className="botonCapacitaciones" onClick={handleCapacitaciones}>
+       <a  
+            href="https://wa.me/5492216714048" 
+            target="_blank" 
+            rel="noreferrer"
+            className='botonCapacitaciones'>
           <p>KaIA</p>
           <div className='kaIAModel'>
-          
+        
+         
           </div>
-        </div>
+            </a>
          <div className="botonOfertas" onClick={handleOfertas}>
           <p>¡OFERTAS!</p>
         </div>
