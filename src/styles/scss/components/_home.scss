@@ -133,16 +133,16 @@
       margin-top: 3rem;
     }
     
-    .botonOfertas{
-      width: 295px;
+    .botonOfertas {
+      width: 236px;
       background-image: url('/public/assets/icons/botonOfertas.png');
       background-size: cover;
       background-position-x: 6px;
-      height: 131px;
+      height: 107px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-top: 5rem;
       z-index: 3;
       cursor: pointer;
       &:hover{
@@ -153,16 +153,16 @@
         -o-transform: scale(1.1);
       }
       p{
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         position: relative;
-        left: 2rem;
         bottom: 0.5rem;
+        left: 1.7rem;
         font-weight: bolder;
         color: vars.$secondary-color;
         font-style: normal;
-      }
-    }
-      
+        
+      }}
+
       .botonLegajo{
         width: 232px;
         background-image: url('/public/assets/icons/botonLegajo.png');
@@ -194,18 +194,19 @@
       
     }
     
-    .botonCapacitaciones{
-      width: 232px;
+    .botonCapacitaciones {
+      width: 295px;
       background-image: url('/public/assets/icons/botonCapacitaciones.png');
       background-size: cover;
       background-position-x: 6px;
-      height: 107px;
+      height: 131px;
       display: flex;
       flex-direction: row;
-     
+      gap: 2rem;
       justify-content: center;
       align-items: center;
       z-index: 3;
+      margin-top: 2rem;
       cursor: pointer;
       &:hover{
         transform: scale(1.1);
@@ -215,22 +216,30 @@
         -o-transform: scale(1.1);
       }
       p{
-        font-size: 1.3rem;
+        font-size: 2.3rem;
         position: relative;
+        left: 3rem;
         bottom: 0.5rem;
-        left: 0.3rem;
         font-weight: bolder;
         color: vars.$secondary-color;
         font-style: normal;
-        
       }
-
+    }
+    
+  
+    
+   
       .kaIAModel {
         border-radius: 100%;
-        padding : 2rem;
+        padding : 4rem;
+        position: relative;
+        bottom: 1rem;
+        
         background-image: url('/public/assets/icons/kaia.png');
         background-size: contain;
         background-repeat: no-repeat;
+        z-index: 10,;
+        
       }
     }
     
@@ -260,7 +269,7 @@
     }
   }
   
-}
+
 @media (min-width: 500px) {
   .landing-container {
     .ofertas{

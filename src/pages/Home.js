@@ -29,19 +29,21 @@ const Home = () => {
 
       <section className="navContainer">
         <Logo />
-        <div className="botonOfertas" onClick={handleOfertas}>
+       <div className="botonCapacitaciones" onClick={handleCapacitaciones}>
+          <p>KaIA</p>
+          <div className='kaIAModel'>
+          
+          </div>
+        </div>
+         <div className="botonOfertas" onClick={handleOfertas}>
           <p>¡OFERTAS!</p>
         </div>
         <div className="botonLegajo" style={{ cursor: 'pointer' }} onClick={handleLegajo}>
           <p>LEGAJO</p>
           <p>IMPOSITIVO</p>
         </div>
-        <div className="botonCapacitaciones" onClick={handleCapacitaciones}>
-          <p>KaIA</p>
-          <div className='kaIAModel'>
-          
-          </div>
-        </div>
+        
+       
         <div className="border"></div>
       </section>
 
@@ -53,7 +55,7 @@ const Home = () => {
           <a href="https://www.kronenvet.com.ar/" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoWeb.png" alt="Web kronen"/></li></a>
           <a href="https://apps.apple.com/ar/app/mikvet/id1473814533" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoAppStore.png" alt="App Store kronen"/></li></a>
           <a href="https://play.google.com/store/apps/details?id=com.app.kronenvet" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoGooglePlay.png" alt="Google Play kronen" /></li></a>
-          <a href="https://play.google.com/store/apps/details?id=com.app.kronenvet" target="_blank" rel="noreferrer"><li><img  style={{width:'30px', position:'relative', bottom: '.2rem'}} src="/assets/icons/iconoTiktok.png" alt="TikTok kronen" /></li></a>
+          <a href="https://www.tiktok.com/@kronenvet?_r=1&_t=ZM-926qvj1sY27" target="_blank" rel="noreferrer"><li><img  style={{width:'30px', position:'relative', bottom: '.2rem'}} src="/assets/icons/iconoTiktok.png" alt="TikTok kronen" /></li></a>
 
         </ul>
       </section>
