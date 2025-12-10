@@ -269,7 +269,7 @@ body {
   background-position-x: 6px;
   height: 107px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   z-index: 3;
@@ -283,12 +283,20 @@ body {
   -o-transform: scale(1.1);
 }
 .landing-container .navContainer .botonCapacitaciones p {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   position: relative;
   bottom: 0.5rem;
+  left: 0.3rem;
   font-weight: bolder;
   color: #504B4B;
   font-style: normal;
+}
+.landing-container .navContainer .botonCapacitaciones .kaIAModel {
+  border-radius: 100%;
+  padding: 2rem;
+  background-image: url("/public/assets/icons/kaia.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .landing-container .socialMedia {
   margin-top: 1rem;

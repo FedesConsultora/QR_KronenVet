@@ -3,6 +3,7 @@ import Logo from '../components/Logo.js';
 import { useNavigate } from 'react-router-dom';
 import ReactModal from 'react-modal';
 
+
 ReactModal.setAppElement('#root');
 
 const Home = () => {
@@ -36,7 +37,10 @@ const Home = () => {
           <p>IMPOSITIVO</p>
         </div>
         <div className="botonCapacitaciones" onClick={handleCapacitaciones}>
-          <p>CAPACITACIONES</p>
+          <p>KaIA</p>
+          <div className='kaIAModel'>
+          
+          </div>
         </div>
         <div className="border"></div>
       </section>
@@ -48,7 +52,9 @@ const Home = () => {
           <a href="https://www.facebook.com/kronenvet" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoFacebook.png" alt="Facebook kronen"/></li></a>
           <a href="https://www.kronenvet.com.ar/" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoWeb.png" alt="Web kronen"/></li></a>
           <a href="https://apps.apple.com/ar/app/mikvet/id1473814533" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoAppStore.png" alt="App Store kronen"/></li></a>
-          <a href="https://play.google.com/store/apps/details?id=com.app.kronenvet" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoGooglePlay.png" alt="Google Play kronen"/></li></a>
+          <a href="https://play.google.com/store/apps/details?id=com.app.kronenvet" target="_blank" rel="noreferrer"><li><img src="/assets/icons/iconoGooglePlay.png" alt="Google Play kronen" /></li></a>
+          <a href="https://play.google.com/store/apps/details?id=com.app.kronenvet" target="_blank" rel="noreferrer"><li><img  style={{width:'30px', position:'relative', bottom: '.2rem'}} src="/assets/icons/iconoTiktok.png" alt="TikTok kronen" /></li></a>
+
         </ul>
       </section>
 
